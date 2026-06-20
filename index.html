@@ -123,7 +123,7 @@
       println("Awesome! So happy you did not choose B!");
       println();
 
-      println("The next two weeks (last two of June) I am available after 5 pm any day during weekdays,");
+      println("Next week I am available after 5 pm any day during weekdays,");
       println("and I can adapt to anytime during weekends");
       println();
 
@@ -207,7 +207,7 @@
         println("re-adjusted depending of the activity");
       }
       println();
-      println("Type the time and address to meet/pick you up:");
+      println("Feel free to chose a date beyond next week, but my schedule will change (specially during the week). Type the time (date) and address to meet/pick you up:");
       step = "q6";
       return;
     }
@@ -230,7 +230,7 @@
       if (state.a3) println(`Q3: ${state.a3} - ${ch3[state.a3]}`);
       if (state.a4) println(`Q4: ${state.a4} - ${ch4[state.a4]}`);
       println(`Q5: ${state.a5} - ${ch5[state.a5]}`);
-      println("Time (it can be in month if needed jaja) and Address: " + (state.a6 || ""));
+      println("Time and Address: " + (state.a6 || ""));
       println("Additional info: " + (state.a7 || ""));
       println();
       println("Would you be so kind to send me the summary please?");
