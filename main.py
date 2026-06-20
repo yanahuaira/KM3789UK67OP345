@@ -1,4 +1,4 @@
-# kimia asking out
+
 print ("Hi Kimia!, since you are a very busy scientist "
        "\nI created this hoping I can meet you (but I understand if it is 
        \n not a good time")
