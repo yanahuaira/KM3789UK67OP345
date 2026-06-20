@@ -1,10 +1,11 @@
 # kimia asking out
 print ("Hi Kimia!, since you are a very busy scientist "
-       "\nI created this to see if we can finally meet")
-question1 = "Are you available to meet in the following days?"
+       "\nI created this hoping I can meet you (but I understand if it is 
+       \n not a good time")
+question1 = "Would you share some of your time with me?"
 choices1 = {
         "A": "Absolutely, I will be happy to make time so we can get to know each other :D",
-        "B": "I am not interested in meeting a clever, loyal, commited, slightly good looking latino"
+        "B": "I am not interested in meeting a clever, loyal, commited, disciplined, slightly good looking latino"
     }
 
 print (question1)
@@ -24,7 +25,7 @@ print("Awesome! I really appreciate you making time.")
 
 #question 2
 
-print ("The next two weeks I am available after 5 pm any day during weekday, "
+print ("The next two weeks I am available after 5 pm any day during weekdays, "
        "\nand I can adapt to anytime during weekends")
 
 q2= "Which day would work best for you?"
@@ -45,10 +46,10 @@ while a2 not in ch2:
 if a2 in weekday_key:
             print ("Then we could have dinner. I am not sure if you have dietary restriction "
                    "\n(maybe pork?). "
-                    "\nI though some options.")
+                    "\nI though of some options.")
 
-            q3= "which would you prefer?"
-            ch3= {"A": "Italian", "B": "Sushi", "C": "middle eastern", "D": "chinesse", "E": "other"}
+            q3= "Which would you prefer?"
+            ch3= {"A": "Italian", "B": "Sushi", "C": "Middle-eastern", "D": "Asian", "E": "Other"}
             print(q3)
             for key in ch3:
                 print (f"{key}: {ch3[key]}")
@@ -61,7 +62,7 @@ if a2 in weekday_key:
 else:
     print ("Great! Weekends give much more options. Here are some.")
     q4= "which would you prefer to do?"
-    ch4= {"A": "Easy morning walk followed by brunch", "B": "dinner/lunch and soccer match", "C": "strawberry picking and lunch/breakfast", "D": "try a new cafeteria or icecream (I have a few places in mind)" }
+    ch4= {"A": "Easy morning walk followed by brunch", "B": "Dinner/lunch and soccer match", "C": "Strawberry picking and lunch/breakfast", "D": "Try a new cafeteria or icecream (I have a few places in mind)" }
     print(q4)
     for key in ch4:
             print (f"{key}: {ch4[key]}")
@@ -76,7 +77,7 @@ print ("For any of these plans (except picking strawberries) "
        "\nif you are willing to go outside of NH. I think that will allow us to "
        "\nvisit some new places.")
 q5= "Which sounds more like you?"
-ch5= {"A": "I love NH and I want to stay here forever, lets stay close", "B": "take me out of here! lets go as far as possible."}
+ch5= {"A": "I love NH and I want to stay here forever, lets stay close", "B": "Take me out of here! lets go as far as possible."}
 print(q5)
 for key in ch5:
     print (f"{key}: {ch5[key]}")
@@ -109,7 +110,7 @@ if "a4" in globals() and a4 is not None:
 
 print(f"Q5: {a5} - {ch5[a5]}")
 
-print ("Time and Address:", a6)
+print ("Time (it can be in month if needed jaja) and Address:", a6)
 print ("Additional info:", a7)
 
 print ("Would you be so kind to send me the summary please? "
