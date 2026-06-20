@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Console</title>
+  <style>
+    body{
+      margin:0;
+      background:#000;
+      color:#fff;
+      font-family: Consolas, "Courier New", monospace;
+      font-size:14px;
+      line-height:1.35;
+    }
+    .wrap{max-width:900px; margin:0 auto; padding:16px;}
+    #screen{white-space:pre-wrap; word-wrap:break-word;}
+    .row{display:flex; gap:8px; margin-top:10px;}
+    input{
+      flex:1;
+      background:#000;
+      color:#fff;
+      border:1px solid #555;
+      padding:8px;
+      border-radius:0;
+      outline:none;
+      font-family:inherit;
+      font-size:inherit;
+    }
+    button{
+      background:#000;
+      color:#fff;
+      border:1px solid #555;
+      padding:8px 12px;
+      border-radius:0;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="screen"></div>
+    <div class="row">
+      <input id="inp" autocomplete="off" spellcheck="false" placeholder="Type here and press Enter" />
+      <button id="btn">Enter</button>
+    </div>
+  </div>
+
+<script>
+  const screen = document.getElementById("screen");
+  const inp = document.getElementById("inp");
+  const btn = document.getElementById("btn");
+
+  const state = {
+    a1:null, a2:null, a3:null, a4:null, a5:null, a6:"", a7:""
+  };
+
+  const choices1 = {
+    A: "Absolutely, I will be happy to make time so we can get to know each other :D",
+    B: "I am not interested in meeting a clever, loyal, commited, disciplined, slightly good looking latino"
+  };
+
+  const ch2 = { A:"Monday", B:"Tuesday", C:"Wednesday", D:"Thursday", E:"Friday", F:"Saturday", G:"Sunday" };
+  const weekday = new Set(["A","B","C","D","E"]);
+  const ch3 = { A:"Italian", B:"Sushi", C:"Middle-eastern", D:"Asian", E:"Other" };
+  const ch4 = {
+    A:"Easy morning walk followed by brunch",
+    B:"Dinner/lunch and soccer match",
+    C:"Strawberry picking and lunch/breakfast",
+    D:"Try a new cafeteria or icecream (I have a few places in mind)"
+  };
+  const ch5 = {
+    A:"I love NH and I want to stay here forever, lets stay close",
+    B:"Take me out of here! lets go as far as possible."
+  };
+
+  function println(s=""){ screen.textContent += s + "\n"; }
+  function clearInput(){ inp.value=""; }
+  function promptLine(s){ println(s); }
+
+  function showChoices(obj){
+    for (const k of Object.keys(obj)) println(`${k}: ${obj[k]}`);
+  }
+
+  let step = "intro";
+  let currentChoices = null;
+
+  function askWithChoices(question, choices){
+    currentChoices = choices;
+    println(question);
+    showChoices(choices);
+    promptLine("Please type your answer:");
+  }
+
+  function start(){
+    screen.textContent = "";
+    println('Hi Kimia!, since you are a very busy scientist');
+    println('I created this hoping I can meet you (but I understand if it is');
+    println(' not a good time)');
+    println();
+    step = "q1";
+    askWithChoices("Would you share some of your time with me?", choices1);
+  }
+
+  function handleInput(raw){
+    const input = raw.trim();
+
+    if (step === "q1"){
+      const v = input.toUpperCase();
+      if (!(v in choices1)){
+        println("Please select A or B");
+        return;
+      }
+      if (v === "B"){
+        println("It makes no sense to choose that answer, please try again :(.");
+        println("Answer A might be the correct answer ;)");
+        return;
+      }
+      state.a1 = v;
+      println("Awesome! I really appreciate you making time.");
+      println();
+
+      println("The next two weeks I am available after 5 pm any day during weekdays,");
+      println("and I can adapt to anytime during weekends");
+      println();
+
+      step = "q2";
+      askWithChoices("Which day would work best for you?", ch2);
+      return;
+    }
+
+    if (step === "q2"){
+      const v = input.toUpperCase();
+      if (!(v in ch2)){
+        println("Invalid choice. Please choose one of: " + Object.keys(ch2).join(", "));
+        return;
+      }
+      state.a2 = v;
+
+      if (weekday.has(v)){
+        println("Then we could have dinner. I am not sure if you have dietary restriction");
+        println("(maybe pork?).");
+        println("I though of some options.");
+        println();
+        step = "q3";
+        askWithChoices("Which would you prefer?", ch3);
+      } else {
+        println("Great! Weekends give much more options. Here are some.");
+        println();
+        step = "q4";
+        askWithChoices("which would you prefer to do?", ch4);
+      }
+      return;
+    }
+
+    if (step === "q3"){
+      const v = input.toUpperCase();
+      if (!(v in ch3)){
+        println("Invalid choice. Please choose one of: " + Object.keys(ch3).join(", "));
+        return;
+      }
+      state.a3 = v;
+      println("That sounds good to me!");
+      println();
+      step = "q5intro";
+    }
+
+    if (step === "q4"){
+      const v = input.toUpperCase();
+      if (!(v in ch4)){
+        println("Invalid choice. Please choose one of: " + Object.keys(ch4).join(", "));
+        return;
+      }
+      state.a4 = v;
+      println("That sounds good to me!");
+      println();
+      step = "q5intro";
+    }
+
+    if (step === "q5intro"){
+      println("For any of these plans (except picking strawberries)");
+      println("there are options in NH. However, I am more than happy to pick you up");
+      println("if you are willing to go outside of NH. I think that will allow us to");
+      println("visit some new places.");
+      println();
+      step = "q5";
+      askWithChoices("Which sounds more like you?", ch5);
+      return;
+    }
+
+    if (step === "q5"){
+      const v = input.toUpperCase();
+      if (!(v in ch5)){
+        println("Invalid choice. Please choose one of: " + Object.keys(ch5).join(", "));
+        return;
+      }
+      state.a5 = v;
+
+      if (v === "A"){
+        println("This gives us a good idea of what to do.");
+      } else {
+        println("This gives us a good plan.");
+        println("Depending on your choices time might need to be");
+        println("re-adjusted depending of the activity");
+      }
+      println();
+      println("Type the time and address to meet/pick you up:");
+      step = "q6";
+      return;
+    }
+
+    if (step === "q6"){
+      state.a6 = input;
+      println("Anything else you would like to add?");
+      step = "q7";
+      return;
+    }
+
+    if (step === "q7"){
+      state.a7 = input;
+
+      println();
+      println("Here is a summary of your answers");
+      println();
+      println(`Q1: ${state.a1} - ${choices1[state.a1]}`);
+      println(`Q2: ${state.a2} - ${ch2[state.a2]}`);
+      if (state.a3) println(`Q3: ${state.a3} - ${ch3[state.a3]}`);
+      if (state.a4) println(`Q4: ${state.a4} - ${ch4[state.a4]}`);
+      println(`Q5: ${state.a5} - ${ch5[state.a5]}`);
+      println("Time (it can be in month if needed jaja) and Address: " + (state.a6 || ""));
+      println("Additional info: " + (state.a7 || ""));
+      println();
+      println("Would you be so kind to send me the summary please?");
+      println("If you don't have time, have to much going on your life right now, or");
+      println("you are not interested, I understand. I would really like the opportunity");
+      println("to know you Kimia :)");
+
+      println();
+      println("----");
+      println("Type RESTART to run again.");
+
+      step = "done";
+      return;
+    }
+
+    if (step === "done"){
+      if (input.trim().toUpperCase() === "RESTART"){
+        state.a1=state.a2=state.a3=state.a4=state.a5=null;
+        state.a6=""; state.a7="";
+        start();
+      } else {
+        println('Type RESTART if you want to run it again.');
+      }
+      return;
+    }
+  }
+
+  function submit(){
+    const v = inp.value;
+    clearInput();
+    // echo what the user typed (like a console)
+    println("> " + v);
+    handleInput(v);
+    inp.focus();
+  }
+
+  btn.addEventListener("click", submit);
+  inp.addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
+
+  start();
+</script>
+</body>
+</html>
