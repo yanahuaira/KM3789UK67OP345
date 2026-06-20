@@ -59,16 +59,16 @@
 
   const choices1 = {
     A: "Absolutely, I will be happy to make time so we can get to know each other :D",
-    B: "I am not interested in meeting a clever, loyal, commited, disciplined, slightly good looking latino"
+    B: "I’m not interested in meeting someone who sent an HTML invitation. Clever, yes; socially normal, debatable. "
   };
 
-  const ch2 = { A:"Monday", B:"Tuesday", C:"Wednesday", D:"Thursday", E:"Friday", F:"Saturday", G:"Sunday" };
+  const ch2 = { A:"Monday, it is Monday anyway, why not!", B:"Tuesday, early but fun", C:"Wednesday, midweek bonus!", D:"Thursday, is it not Friday yet?", E:"Friday, we made it!", F:"Saturday, prime time. ", G:"Sunday, this is so much better than Saturday" };
   const weekday = new Set(["A","B","C","D","E"]);
-  const ch3 = { A:"Italian", B:"Sushi", C:"Middle-eastern", D:"Latin", E:"Other" };
+  const ch3 = { A:"Italian, pasta is my true love!", B:"Sushi, nothing beats japanese!", C:"Middle-eastern, I am feeling homey", D:"Latin, this is not always equal to mexican", E:"Other" };
   const ch4 = {
-    A:"Easy morning walk followed by brunch",
-    B:"Dinner/lunch and soccer match",
-    C:"Strawberry picking and lunch/breakfast",
+    A:"Easy morning walk (close to Quinnipiac it is very pretty) followed by brunch",
+    B:"Dinner/lunch and watch a FIFA soccer match",
+    C:"Strawberry picking (I have never done it before) and lunch/breakfast",
     D:"Try a new cafeteria or icecream (I have a few places in mind)"
   };
   const ch5 = {
@@ -96,12 +96,11 @@
 
   function start(){
     screen.textContent = "";
-    println('Hi Kimia!, since you are a very busy scientist');
-    println('I created this hoping I can meet you (but I understand if it is');
-    println(' not a good time)');
+    println('Hi Kimia! I hope you had/are having a great time with your family. Since you are a very busy scientist');
+    println('I created this obviously too much effort invitation. Fingers crossed it will work.');
     println();
     step = "q1";
-    askWithChoices("Would you share some of your time with me?", choices1);
+    askWithChoices("I would love to hang out and get to know you better (and you to get to know me too). Is this something you would consider?", choices1);
   }
 
   function handleInput(raw){
@@ -114,15 +113,17 @@
         return;
       }
       if (v === "B"){
-        println("It makes no sense to choose that answer, please try again :(.");
-        println("Answer A might be the correct answer ;)");
+        println("Come on! Who elses has learned coding just to ask you out? Plus you are prettier and smarter, that means");
+        println("you will always look good next to me!. Give option 'A' a chance, at least you will see the full invite, you can reject me later.");
+        println("(Bottom line, if you are truly not interested I totally understand it, we are cool!. Just close the webpage");
+        println("because it will create an infinite loop if you just answer B)");
         return;
       }
       state.a1 = v;
-      println("Awesome! I really appreciate you making time.");
+      println("Awesome! So happy you did not choose B!");
       println();
 
-      println("The next two weeks I am available after 5 pm any day during weekdays,");
+      println("The next two weeks (last two of June) I am available after 5 pm any day during weekdays,");
       println("and I can adapt to anytime during weekends");
       println();
 
@@ -233,11 +234,14 @@
       println("Additional info: " + (state.a7 || ""));
       println();
       println("Would you be so kind to send me the summary please?");
-      println("I also acknowledge that you may not have time, have to much going on your life right now, or");
-      println("you are simply not interested. I would really like the opportunity");
-      println("to know you Kimia :)");
-
+      println("If you made it here even if it was just for curiosity, thanks for your time.");
       println();
+      println("I am trying to learn some coding and it was fun to make this. I think you are very pretty,");
+      println("and for the little I have been able to talk with you, I feel you are very passionate for your work.");
+      println("Maybe you are a little shy? or simply not interested? jajajaja I dont really know! I know this is weird (I might have");
+      println("been called weird several times in the past) but what can I say, I am very committed to everything I do and clearly .");
+      println("interested to know you better. Enjoy your weekend Kimia!");
+        
       println("----");
       println("Type RESTART to run again.");
 
